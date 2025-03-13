@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using poke_poke.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +19,6 @@ builder.Services.AddSwaggerGen();
 
 // app
 var app = builder.Build();
-
 
 // serves default files this should be called before UseStaticFiles() method
 app.UseDefaultFiles();
@@ -43,6 +43,6 @@ if (app.Environment.IsDevelopment())
 }
 
 // enforces HTTPS
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.Run();
