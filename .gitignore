@@ -31,3 +31,8 @@ project.assets.json
 # Ignore Rider and JetBrains files
 .idea/
 *.iml
+
+# docker file
+Dockerfile
+docker-compose.yml
+.dockerignore
