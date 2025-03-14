@@ -1,9 +1,10 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using poke_poke.Models;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace poke_poke.Controllers
 {
@@ -12,6 +13,18 @@ namespace poke_poke.Controllers
     public class ScoresController : ControllerBase
     {
         private static List<GameScore> scores = new List<GameScore>();
+
+        // holds the validTokens so you can't just post scores
+        private static Dictionary<string, bool> validTokens = new Dictionary<string, bool>();
+
+        // generates a random token sets valid to true
+        [HttpGet("generate-token")]
+        public ActionResult<string> GenerateToken()
+        {
+            var token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(32));
+            validTokens[token] = true;
+            return Ok(token);
+        }
 
         // GET all scores
         [HttpGet]
@@ -34,10 +47,18 @@ namespace poke_poke.Controllers
             return Ok(gameScore);
         }
 
-        // POST a new score
+        // POST a new score (Requires a valid token)
         [HttpPost]
-        public ActionResult<GameScore> PostScore(GameScoreDTO scoreDTO)
+        public ActionResult<GameScore> PostScore(GameScoreDTO scoreDTO, [FromHeader] string token)
         {
+            if (string.IsNullOrEmpty(token) || !validTokens.ContainsKey(token))
+            {
+                return Unauthorized("Invalid or missing token");
+            }
+
+            // remove the token after use (as it is a one time use token)
+            validTokens.Remove(token);
+
             var gameScore = new GameScore
             {
                 Id = scores.Any() ? scores.Max(s => s.Id) + 1 : 1,
