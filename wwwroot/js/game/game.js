@@ -1,5 +1,7 @@
 import { createPokemonSet } from "../objectAndFetch/pokefactory.js";
 import { getRandomQuestion } from "./gameModes.js";
+import { getTokenOnGameStart } from "../objectAndFetch/fetchTokenAndScore.js";
+import { submit } from "./submitScore.js";
 
 // pokemon frames
 const pokemonFrame = document.getElementsByClassName("pokemon-frames")[0];
@@ -27,6 +29,7 @@ const submitForm = document.getElementById('submit-form');
 let countDown = 5.0;
 let playerScore = 0;
 let heartCounter = 3;
+let gameToken;
 let interval;
 
 // current question
@@ -148,10 +151,19 @@ const dispalyPokemons = () => {
 };
 
 //event handlers
-ranButton.addEventListener("click", () => {
+ranButton.addEventListener("click", async () => {
   playerScore = 0;
   heartCounter = 3;
   displayHearts();
+  gameToken = await getTokenOnGameStart();
+});
+
+submitForm.addEventListener("submit", async (event) => {
+  event.preventDefault(); // prevents form from reloading the page
+
+  // input values
+  const playerName = document.getElementById('name').value;
+  await submit(playerName, playerScore, gameToken);
 });
 
 export { startGameLoop };

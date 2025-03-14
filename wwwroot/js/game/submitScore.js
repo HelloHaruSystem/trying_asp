@@ -1,12 +1,7 @@
 import { getTokenOnGameStart, submitScore } from "../objectAndFetch/fetchTokenAndScore.js";
 
-let gameToken = null;
-let playerName = null;
-let score = null;
+const submit = async (playerName, score, token) => {
+    await submitScore(playerName, score, token);
+};
 
-// get token
-gameToken = await getTokenOnGameStart(gameToken);
-// get name and score
-throw new Error("Not yet implemented");
-// submit score
-await submitScore(playerName, score, gameToken);
+export { submit };

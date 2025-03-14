@@ -1,21 +1,23 @@
-const getTokenOnGameStart = async (gameToken) => {
+const getTokenOnGameStart = async () => {
+    let gameToken;
     try {
         const response = await fetch("/api/scores/generate-token");
         gameToken = await response.text();
     } catch (error) {
         console.error("Problem fetching token");
+        return null;
     }   
+    return gameToken;
 };
 
-const submitScore = async (palyerName, score, gameToken) => {
+const submitScore = async (playerName, score, gameToken) => {
     if (!gameToken) {
         throw new Error("Can't submit a score without playing :)");
     }
-
     const data = {
-        playerName: playername,
+        playerName: playerName,
         score: score,
-        timeOfScore: new Date().now.toISOString()
+        timeOfScore: new Date().toISOString()
     };
     
     try {
@@ -31,7 +33,7 @@ const submitScore = async (palyerName, score, gameToken) => {
         if (!response.ok) {
             alert("can't submit score try again later");
         }  else {
-            alert("Score submitted successfully! see you score at the leaderboardpage");
+            alert("Score submitted successfully! see your score at the leaderboardpage");
         }
     } catch (error) {
         console.error("Error submitting your score try again later.");
