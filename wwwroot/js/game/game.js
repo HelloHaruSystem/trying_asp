@@ -20,6 +20,9 @@ const score = document.getElementById("score");
 // hearts representing lives
 const hearts = document.querySelectorAll(".heart");
 
+// submit score form
+const submitForm = document.getElementById('submit-form');
+
 // countdown and interval used for the timer plus the players score aswell as a heart counter
 let countDown = 5.0;
 let playerScore = 0;
@@ -97,6 +100,7 @@ const gameOver = () => {
   ranButton.style.display = "inline-block";
   countDown = 5.0;
   clearInterval(interval);
+  submitForm.style.display = 'block';
 };
 
 const displayTimer = () => {

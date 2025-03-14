@@ -32,7 +32,7 @@ app.UseRouting();
 // enalbes authorization
 app.UseAuthorization();
 
-// map Contriller routes directly 
+// map Controller routes directly 
 app.MapControllers();
 
 // Configure the HTTP request pipeline.
