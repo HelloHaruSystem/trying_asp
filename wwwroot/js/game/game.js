@@ -161,9 +161,10 @@ ranButton.addEventListener("click", async () => {
 submitForm.addEventListener("submit", async (event) => {
   event.preventDefault(); // prevents form from reloading the page
 
-  // input values
+  // input value (name) from html form
   const playerName = document.getElementById('name').value;
   await submit(playerName, playerScore, gameToken);
+  submitForm.style.display = 'none';
 });
 
 export { startGameLoop };
