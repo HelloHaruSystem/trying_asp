@@ -55,7 +55,6 @@ header {
   justify-content: space-between;
   align-items: flex-start;
   max-width: 2600px;
-  margin: 20px auto;
 }
 
 .pokemon-frames {
@@ -142,18 +141,19 @@ header {
 /*side bar */
 .sidebar {
   width: 200px;
-  background-color: violet;
+  background-color: white;
   padding: 20px;
   min-height: 70vh;
-  border: 1px solid black;
 }
 
 .left-sidebar {
   text-align: left;
+  border-right: 1px solid black;
 }
 
 .right-sidebar {
   text-align: right;
+  border-left: 1px solid black;
 }
 
 main {
