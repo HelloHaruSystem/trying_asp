@@ -18,7 +18,8 @@
         <img src="" alt="Pochama" id="pochama">
         <ul>
             <li><a href="index.html">Reset</a></li>
-            <li><a href="leaderboard.html">Leaderboard</a></li>
+            <!--TODO: change to eladerboard when it leaderboard is actually sorted (not Submitted scores) -->
+            <li><a href="leaderboard.html">Submitted scores</a></li>
             <li><span>TEST</span></li>
         </ul>
     </div>
@@ -32,7 +33,18 @@
 
     <!--Main content-->
     <main>
-        
+        <div class="leaderboard-main">
+            <h2>Leaderboard</h2>
+            <form id="search-score" action="GET" autocomplete="off">
+                <label for="search-name">Search for score</label>
+                <input type="text" id="search-name" name="search-name" min="1" max="100" placeholder="Enter name here..." required>
+                <input type="submit" value="search!">
+            </form>
+            <br>
+            <ol id="score-list">
+
+            </ol>
+        </div>
     </main>
 
     <!--Right side bar-->

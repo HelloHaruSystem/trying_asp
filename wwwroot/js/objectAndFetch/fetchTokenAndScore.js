@@ -1,7 +1,10 @@
+// base url to fetch scores from
+const baseUrl = "/api/scores/";
+
 const getTokenOnGameStart = async () => {
     let gameToken;
     try {
-        const response = await fetch("/api/scores/generate-token");
+        const response = await fetch(baseUrl + "generate-token");
         gameToken = await response.text();
     } catch (error) {
         console.error("Problem fetching token");
@@ -21,7 +24,7 @@ const submitScore = async (playerName, score, gameToken) => {
     };
     
     try {
-        const response = await fetch("/api/scores", {
+        const response = await fetch(baseUrl, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -40,4 +43,19 @@ const submitScore = async (playerName, score, gameToken) => {
     }
 };
 
-export { getTokenOnGameStart, submitScore };
+const getScores = async () => {
+    try {
+        const response = await fetch(baseUrl);
+        
+        if (!response.ok) {
+            alert("Problem fetching scores... try again later");
+        }
+        const scores = await response.json();
+
+        return scores;
+    } catch (error) {
+        console.error(`error while fetching scoress ${error}`)
+    }
+};
+
+export { getTokenOnGameStart, submitScore, getScores };
