@@ -155,6 +155,7 @@ ranButton.addEventListener("click", async () => {
   playerScore = 0;
   heartCounter = 3;
   displayHearts();
+  submitForm.style.display = 'none';
   gameToken = await getTokenOnGameStart();
 });
 
