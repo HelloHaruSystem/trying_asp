@@ -1,3 +1,5 @@
+import { createPochama } from "../objectAndFetch/pokefactory.js";
+
 // logo and title
 const pochama = document.getElementById("pochama");
 const logo = document.getElementById("logo");
