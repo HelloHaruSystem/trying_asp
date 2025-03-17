@@ -165,6 +165,7 @@ submitForm.addEventListener("submit", async (event) => {
   const playerName = document.getElementById('name').value;
   await submit(playerName, playerScore, gameToken);
   submitForm.style.display = 'none';
+  submitForm.reset();
 });
 
 export { startGameLoop };

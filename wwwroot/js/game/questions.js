@@ -11,7 +11,7 @@ const questions = {
     // low
     8: { text: "Which Pokemon is the shortest?!", stat: "height", highOrLow: "lowest" },
     9: { text: "Which pokemon weighs the least?!", stat: "weight", highOrLow: "lowest" },
-    10: { text: "Which Pokemon has the lowest attack base hp?!", stat: "hp", highOrLow: "lowest" },    
+    10: { text: "Which Pokemon has the lowest base hp?!", stat: "hp", highOrLow: "lowest" },    
     11: { text: "Which Pokemon has the lowest attack?!", stat: "attack", highOrLow: "lowest" },
     12: { text: "Which Pokemon has the lowest defense?!", stat: "defense", highOrLow: "lowest" },
     13: { text: "Which Pokemon has the lowest special attack?!", stat: "specialAttack", highOrLow: "lowest" },

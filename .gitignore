@@ -34,5 +34,9 @@ project.assets.json
 
 # docker file
 Dockerfile
+Dockerfile.sqlserver
 docker-compose.yml
 .dockerignore
+
+# Ignore DBSetup files
+DBSetup/

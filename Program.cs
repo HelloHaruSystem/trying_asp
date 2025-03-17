@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using poke_poke.Repository;
 using poke_poke.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,11 @@ builder.Services.AddHttpsRedirection(options =>
 {
     options.HttpsPort = 7005;
 });
+
+// DB Config
+builder.Services.AddDbContext<GameScoreContext>(options => 
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

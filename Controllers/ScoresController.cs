@@ -4,7 +4,10 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using poke_poke.Models;
+using poke_poke.Repository;
+
 
 namespace poke_poke.Controllers
 {
@@ -12,10 +15,15 @@ namespace poke_poke.Controllers
     [ApiController]
     public class ScoresController : ControllerBase
     {
-        private static List<GameScore> scores = new List<GameScore>();
-
+        //private static List<GameScore> scores = new List<GameScore>();
+        private readonly GameScoreContext _context;
         // holds the validTokens so you can't just post scores
         private static Dictionary<string, bool> validTokens = new Dictionary<string, bool>();
+
+        public ScoresController(GameScoreContext context)
+        {
+            _context = context;
+        }
 
         // generates a random token sets valid to true
         [HttpGet("generate-token")]
@@ -28,16 +36,17 @@ namespace poke_poke.Controllers
 
         // GET all scores
         [HttpGet]
-        public ActionResult<IEnumerable<GameScore>> GetScores()
+        public async Task<ActionResult<IEnumerable<GameScore>>> GetScores()
         {
+            var scores = await _context.GameScores.ToListAsync();
             return Ok(scores);
         }
 
         // GET a single score by ID
         [HttpGet("{id}")]
-        public ActionResult<GameScore> GetScore(long id)
+        public async Task<ActionResult<GameScore>> GetScore(long id)
         {
-            var gameScore = scores.Find(x => x.Id == id);
+            var gameScore = await _context.GameScores.FindAsync(id);
 
             if (gameScore == null)
             {
@@ -49,7 +58,7 @@ namespace poke_poke.Controllers
 
         // POST a new score (Requires a valid token)
         [HttpPost]
-        public ActionResult<GameScore> PostScore(GameScoreDTO scoreDTO, [FromHeader] string token)
+        public async Task<ActionResult<GameScore>> PostScore(GameScoreDTO scoreDTO, [FromHeader] string token)
         {
             if (string.IsNullOrEmpty(token) || !validTokens.ContainsKey(token))
             {
@@ -61,28 +70,29 @@ namespace poke_poke.Controllers
 
             var gameScore = new GameScore
             {
-                Id = scores.Any() ? scores.Max(s => s.Id) + 1 : 1,
                 PlayerName = scoreDTO.PlayerName,
                 Score = scoreDTO.Score,
                 TimeOfScore = scoreDTO.TimeOfScore,
             };
 
-            scores.Add(gameScore);
+            _context.GameScores.Add(gameScore);
+            await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetScore), new { id = gameScore.Id }, gameScore);
         }
 
         // DELETE a score by ID
         [HttpDelete("{id}")]
-        public ActionResult DeleteScore(long id)
+        public async Task<ActionResult> DeleteScore(long id)
         {
-            var score = scores.Find(x => x.Id == id);
+            var score = await _context.GameScores.FindAsync(id);
             if (score == null)
             {
                 return NotFound();
             }
 
-            scores.Remove(score);
+            _context.GameScores.Remove(score);
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }
