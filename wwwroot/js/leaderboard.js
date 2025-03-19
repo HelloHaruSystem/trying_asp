@@ -1,5 +1,5 @@
 import { setLogoAndPochama } from "./style/pochama.js";
-import { displayScores, searchScores } from "./leaderboard/scores.js";
+import { displayScores } from "./leaderboard/scores.js";
 
 // search for your score form
 const searchForm = document.getElementById("search-score");
@@ -18,6 +18,6 @@ searchForm.addEventListener('submit', (event) => {
     if (playerName === "") {
         displayScores();
     } else {
-        searchScores(playerName);
+        displayScores(playerName);
     }
 });

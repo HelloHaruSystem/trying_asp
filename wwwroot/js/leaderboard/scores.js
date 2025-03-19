@@ -53,16 +53,20 @@ const scoreNotFound = () => {
     scoreList.appendChild(element);
 };
 
-const displayScores = async () => {
+const displayScores = async (playerName = null) => {
     const sortedScores = await getAndSortScores();
     clearScores();
     let counter = 0;
 
-    for (let score of sortedScores) {
-        if (counter > 25) {
+    const filteredScores = playerName
+        ? sortedScores.filter(scoreOwner => scoreOwner.playerName.toLowerCase() === playerName.toLowerCase()) // if null filter by name
+        : sortedScores;                                                                                      // else filteredScores = sortedScores
+
+    for (let score of filteredScores) {
+        if (counter >= 25) {
             break;
         }
-
+        
         let date = formattedDate(score.timeOfScore);
 
         addScores(score.playerName, score.score, date);
@@ -73,26 +77,4 @@ const displayScores = async () => {
     }
 };
 
-const searchScores = async (playerName) => {
-    const sortedScores = await getAndSortScores();
-    clearScores();
-    let counter = 0;
-
-    for (let score of sortedScores) {
-        if (counter > 25) {
-            break;
-        }
-        
-        if (playerName.toLowerCase() === score.playerName.toLowerCase()) {
-            let date = formattedDate(score.timeOfScore);
-
-        addScores(score.playerName, score.score, date);
-        counter++;
-        }
-    }
-    if (counter === 0) {
-        scoreNotFound();
-    }
-};
-
-export { displayScores, searchScores };
+export { displayScores };
