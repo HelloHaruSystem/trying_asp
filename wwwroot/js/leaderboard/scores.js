@@ -3,8 +3,8 @@ import { getScores } from "../objectAndFetch/fetchTokenAndScore.js";
 // scorelist ol from leaderboard.html
 const scoreList = document.getElementById("score-list");
 
-// the number that list will start from
-let playerNumber = 0;
+// currentPage of Score
+let pageNumber = 0;
 
 const getAndSortScores = async () => {
     const scores = await getScores();
@@ -25,7 +25,7 @@ const formattedDate = (date) => {
         hour: "2-digit",
         minute: "2-digit",
         // second: "2-digit", uncomment to dispaly seconds aswell
-        hour12: false,
+        hour12: false, // 24 hour clock not am and pm
     });
 };
 
@@ -33,7 +33,7 @@ const addScores = (playerName, score, date) => {
     let element = document.createElement('li');
     let span = document.createElement('span');
 
-    span.innerHTML = `Player: ${playerName} ->  Score: ${score} -> Time and date: ${date}`;
+    span.innerHTML = `Player: <strong>${playerName.padEnd(25)}</strong> ->  Score: <strong>${String(score).padEnd(4)}</strong> -> Time and date: <strong>${date}</strong>`;
     element.appendChild(span);
     scoreList.appendChild(element);
 };
