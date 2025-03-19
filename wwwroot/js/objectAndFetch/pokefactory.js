@@ -103,8 +103,7 @@ const createPokemon = async () => {
     data.name,
     data.types[0].type.name,
     type2,
-    data.sprites.versions["generation-v"]["black-white"].animated
-      .front_default,
+    data.sprites.versions["generation-v"]["black-white"].animated.front_default,
     data.height,
     data.weight,
     data.stats[0].base_stat,
@@ -126,13 +125,12 @@ const createPochama = async () => {
   const pochamaId = 393;
   let pochamaData;
 
-  const data = await fetchPokemon(pochamaId);  
+  const data = await fetchPokemon(pochamaId);
 
-    pochamaData = [
-      data.sprites.versions["generation-v"]["black-white"].animated
-        .front_default,
-      data.sprites.front_default,
-    ];
+  pochamaData = [
+    data.sprites.versions["generation-v"]["black-white"].animated.front_default,
+    data.sprites.front_default,
+  ];
 
   return pochamaData;
 };

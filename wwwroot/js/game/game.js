@@ -23,7 +23,7 @@ const score = document.getElementById("score");
 const hearts = document.querySelectorAll(".heart");
 
 // submit score form
-const submitForm = document.getElementById('submit-form');
+const submitForm = document.getElementById("submit-form");
 
 // countdown and interval used for the timer plus the players score aswell as a heart counter
 let countDown = 5.0;
@@ -91,7 +91,7 @@ const checkAnswer = () => {
 };
 
 const startGame = () => {
-  quizPromt.style.display = 'block';
+  quizPromt.style.display = "block";
   ranButton.style.display = "none";
   score.style.display = "block";
   displayTimer();
@@ -103,7 +103,7 @@ const gameOver = () => {
   ranButton.style.display = "inline-block";
   countDown = 5.0;
   clearInterval(interval);
-  submitForm.style.display = 'block';
+  submitForm.style.display = "block";
 };
 
 const displayTimer = () => {
@@ -155,7 +155,7 @@ ranButton.addEventListener("click", async () => {
   playerScore = 0;
   heartCounter = 3;
   displayHearts();
-  submitForm.style.display = 'none';
+  submitForm.style.display = "none";
   gameToken = await getTokenOnGameStart();
 });
 
@@ -163,9 +163,9 @@ submitForm.addEventListener("submit", async (event) => {
   event.preventDefault(); // prevents form from reloading the page
 
   // input value (name) from html form
-  const playerName = document.getElementById('name').value;
+  const playerName = document.getElementById("name").value;
   await submit(playerName, playerScore, gameToken);
-  submitForm.style.display = 'none';
+  submitForm.style.display = "none";
   submitForm.reset();
 });
 

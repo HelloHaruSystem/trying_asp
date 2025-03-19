@@ -6,10 +6,10 @@ const logo = document.getElementById("logo");
 
 // set logo
 const setLogoAndPochama = async () => {
-    const data = await createPochama();
-  
-    pochama.src = data[0];
-    logo.href = data[1];
+  const data = await createPochama();
+
+  pochama.src = data[0];
+  logo.href = data[1];
 };
 
 export { setLogoAndPochama };

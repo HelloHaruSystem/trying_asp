@@ -11,17 +11,17 @@ setLogoAndPochama();
 displayScores();
 
 // event handlers
-searchForm.addEventListener('submit', (event) => {
-    event.preventDefault(); // prevents form from reloading the page
+searchForm.addEventListener("submit", (event) => {
+  event.preventDefault(); // prevents form from reloading the page
 
-    // input value (name) from html form
-    const playerName = document.getElementById('search-name').value;
+  // input value (name) from html form
+  const playerName = document.getElementById("search-name").value;
 
-    if (playerName === "") {
-        displayScores();
-        scoreList.style.listStyle = 'decimal';
-    } else {
-        displayScores(playerName);
-        scoreList.style.listStyle = 'none';
-    }
+  if (playerName === "") {
+    displayScores();
+    scoreList.style.listStyle = "decimal";
+  } else {
+    displayScores(playerName);
+    scoreList.style.listStyle = "none";
+  }
 });

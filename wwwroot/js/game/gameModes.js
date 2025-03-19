@@ -48,7 +48,7 @@ const getRandomQuestion = (currentPokemonSet, promter, checkAnswerFunc) => {
     return () => false; // return empty function for the game.js's checkAnswer function
   }
 
-  promter.innerHTML  = question.text;
+  promter.innerHTML = question.text;
   return () => compareStat(question.stat, question.highOrLow);
 };
 
@@ -60,9 +60,11 @@ const compareStat = (statName, highOrLow) => {
   let correctChoice;
 
   if (highOrLow === "highest") {
-    correctChoice = pokemonSet[userChoice][statName] >= pokemonSet[1 - userChoice][statName];
+    correctChoice =
+      pokemonSet[userChoice][statName] >= pokemonSet[1 - userChoice][statName];
   } else if (highOrLow === "lowest") {
-    correctChoice = pokemonSet[userChoice][statName] <= pokemonSet[1 - userChoice][statName];
+    correctChoice =
+      pokemonSet[userChoice][statName] <= pokemonSet[1 - userChoice][statName];
   }
 
   userChoice = -1;
