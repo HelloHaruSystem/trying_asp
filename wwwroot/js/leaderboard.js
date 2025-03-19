@@ -4,7 +4,7 @@ import { displayScores } from "./leaderboard/scores.js";
 // search for your score form
 const searchForm = document.getElementById("search-score");
 
-// run at startup Methods
+// run at startup functions
 setLogoAndPochama();
 displayScores();
 
