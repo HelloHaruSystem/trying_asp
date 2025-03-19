@@ -3,6 +3,8 @@ import { displayScores } from "./leaderboard/scores.js";
 
 // search for your score form
 const searchForm = document.getElementById("search-score");
+// ol that contains the scores
+const scoreList = document.getElementById("score-list");
 
 // run at startup functions
 setLogoAndPochama();
@@ -17,7 +19,9 @@ searchForm.addEventListener('submit', (event) => {
 
     if (playerName === "") {
         displayScores();
+        scoreList.style.listStyle = 'decimal';
     } else {
         displayScores(playerName);
+        scoreList.style.listStyle = 'none';
     }
 });
