@@ -1,6 +1,7 @@
 # Ignore binaries and build output
 bin/
 obj/
+publish/
 
 # ignore app settings and similar
 appsettings.Development.json
