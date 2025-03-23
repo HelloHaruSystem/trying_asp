@@ -5,10 +5,10 @@ using poke_poke.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// adding controlers
+// adding controllers
 builder.Services.AddControllers();
 
-// enable HTTPS redrirection
+// enable HTTPS redirection
 builder.Services.AddHttpsRedirection(options =>
 {
     options.HttpsPort = 7005;
@@ -35,7 +35,7 @@ app.UseStaticFiles();
 // enable routing
 app.UseRouting();
 
-// enalbes authorization
+// enables authorization
 app.UseAuthorization();
 
 // map Controller routes directly 
