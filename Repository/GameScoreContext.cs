@@ -12,7 +12,7 @@ public class GameScoreContext : DbContext
 
     public DbSet<GameScore> GameScores { get; set; }
 
-    // map the gamecore to the scores table in the db
+    // map the gamescore to the scores table in the db
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<GameScore>(scoreModel =>

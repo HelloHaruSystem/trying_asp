@@ -37,7 +37,7 @@ const submitScore = async (playerName, score, gameToken) => {
       alert("can't submit score try again later");
     } else {
       alert(
-        "Score submitted successfully! see your score at the leaderboardpage"
+        "Score submitted successfully! see your score at the leaderboard page"
       );
     }
   } catch (error) {
@@ -56,7 +56,7 @@ const getScores = async () => {
 
     return scores;
   } catch (error) {
-    console.error(`error while fetching scoress ${error}`);
+    console.error(`error while fetching scores ${error}`);
   }
 };
 
